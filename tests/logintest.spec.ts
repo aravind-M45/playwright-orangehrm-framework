@@ -12,8 +12,8 @@ test.describe("Login tests @regression", () => {
     const loginPage = new LoginPage(page);
 
     await loginPage.navigateToLoginPage(process.env.BASE_URL!);
-    await loginPage.fillUsername(process.env.USERNAME!);
-    await loginPage.fillPassword(process.env.PASSWORD!);
+    await loginPage.fillUsername(`${process.env.USERNAME}`);
+    await loginPage.fillPassword(`${process.env.PASSWORD}`);
     await loginPage.clickSubmit();
 });
 
