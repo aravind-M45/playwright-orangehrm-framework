@@ -8,7 +8,7 @@ test.describe("Login tests @regression", () => {
     const context = await browser.newContext();
     const newpage = await context.newPage();
     loginPage = new LoginPage(newpage);
-    await loginPage.navigateToLoginPage(`${process.env.BASE_URL!}`);
+    await loginPage.navigateToLoginPage();
     await newpage.waitForLoadState('networkidle')
 
   })

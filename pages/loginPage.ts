@@ -16,8 +16,8 @@ export class LoginPage{
     }
 
     //Actions Methods
-    async navigateToLoginPage(url:string){
-        await this.page.goto(url);
+    async navigateToLoginPage(){
+        await this.page.goto("/");
     }
     async fillUsername(username:string){
         await this.usernameInput.fill(username)
