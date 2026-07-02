@@ -1,4 +1,4 @@
-import {Page,Locator} from '@playwright/test';
+import {Page,Locator,expect} from '@playwright/test';
 
 export class LoginPage{
 
@@ -17,7 +17,7 @@ export class LoginPage{
 
     //Actions Methods
     async navigateToLoginPage(){
-        await this.page.goto("/");
+        await this.page.goto(`${process.env.ORANGEHRM_BASEURL}`);
     }
     async fillUsername(username:string){
         await this.usernameInput.fill(username)
@@ -28,5 +28,11 @@ export class LoginPage{
     async clickSubmit(){
         await this.submitButton.click()
     }
+     async verifyHomePageTitle(expectedTitle:string){
+        const actualTitle=await this.page.title()
+        expect(actualTitle).toBe(expectedTitle)
+        const dashboardText = await this.page.getByText('Dashboard').first().innerText();
+        expect(dashboardText).toContain('Dashboard');
+     }
 
 }

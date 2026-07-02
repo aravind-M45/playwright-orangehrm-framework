@@ -12,10 +12,15 @@ test.describe("Login tests @regression", () => {
     await newpage.waitForLoadState('networkidle')
 
   })
-  test("user login with valid credentials", async () => {
-    await loginPage.fillUsername(`${process.env.USERNAME}`);
-    await loginPage.fillPassword(`${process.env.PASSWORD}`);
+  test("user login with valid credentials", async ({request}) => {
+    await loginPage.fillUsername(`${process.env.ORANGEHRM_USERNAME}`);
+    await loginPage.fillPassword(`${process.env.ORANGEHRM_PASSWORD}`);
     await loginPage.clickSubmit();
-});
+    await loginPage.verifyHomePageTitle("OrangeHRM");
+    const response = await request.get('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index');
+    expect(response.status()).toBe(200);
+  });
+
+
 
 });
