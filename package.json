@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:chromium": "playwright test --project=chromium --headed",
+    "test:headed": "playwright test --headed",
+    "test:login": "playwright test tests/logintest.spec.ts",
+    "typecheck": "tsc --noEmit"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
