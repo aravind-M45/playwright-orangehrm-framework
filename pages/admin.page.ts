@@ -13,6 +13,13 @@ export class AdminPage {
     readonly passwordInput: Locator;
     readonly confirmPasswordInput: Locator;
     readonly saveButton: Locator;
+    readonly jobsDropdown: Locator;
+    readonly selectJobTitleOption: Locator;
+    readonly jobAddButton: Locator;
+    readonly jobTitleInput: Locator;
+    readonly jobDescriptionInput: Locator;
+    readonly jobNoteInput: Locator;
+    readonly jobSaveButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -36,6 +43,13 @@ export class AdminPage {
             .locator("input");
 
         this.saveButton = page.getByRole("button", { name: "Save" });
+        this.jobsDropdown=page.locator('li:has-text("Job")')
+        this.selectJobTitleOption=page.getByText('Job Titles', { exact: true })
+        this.jobAddButton=page.getByRole('button', { name: /Add/i })
+        this.jobTitleInput=page.locator(".oxd-form-row .oxd-input--active")
+        this.jobDescriptionInput=page.getByPlaceholder('Type description here')
+        this.jobNoteInput=page.getByPlaceholder("Add note")
+        this.jobSaveButton=page.getByRole("button",{name:"Save"})
     }
 
     // ---------- Actions ----------
