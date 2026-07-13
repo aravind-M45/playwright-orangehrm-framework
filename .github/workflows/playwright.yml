@@ -26,6 +26,28 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      - name: Check env vars are set
+        run: |
+          if [ -z "$BASE_URL" ]; then
+            echo "BASE_URL is EMPTY"
+          else
+            echo "BASE_URL is set (length: ${#BASE_URL})"
+          fi
+          if [ -z "$USERNAME" ]; then
+            echo "USERNAME is EMPTY"
+          else
+            echo "USERNAME is set (length: ${#USERNAME})"
+          fi
+          if [ -z "$PASSWORD" ]; then
+            echo "PASSWORD is EMPTY"
+          else
+            echo "PASSWORD is set (length: ${#PASSWORD})"
+          fi
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+
       - name: Run Playwright Tests
         env:
           BASE_URL: ${{ secrets.BASE_URL }}

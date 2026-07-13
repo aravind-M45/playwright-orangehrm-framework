@@ -34,5 +34,12 @@ export class LoginPage {
         const dashboardText = await this.page.getByText('Dashboard').first().innerText();
         expect(dashboardText).toContain('Dashboard');
     }
+
+    async userLogin(username: string, password: string) {
+        await this.navigateToLoginPage();
+        await this.fillUsername(username);
+        await this.fillPassword(password);
+        await this.clickSubmit();
+    }
 }
 
