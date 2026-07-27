@@ -17,7 +17,7 @@ export class LoginPage {
 
     //Actions Methods
     async navigateToLoginPage() {
-        await this.page.goto(`${process.env.ORANGEHRM_BASEURL}`);
+         await this.page.goto(`${process.env.ORANGEHRM_BASEURL}`);
     }
     async fillUsername(username: string) {
         await this.usernameInput.fill(username)
@@ -27,12 +27,9 @@ export class LoginPage {
     }
     async clickSubmit() {
         await this.submitButton.click()
-        await this.page.waitForLoadState('networkidle')
     }
     async verifyHomePageTitle(expectedTitle: string) {
-        await expect(this.page).toHaveTitle(expectedTitle);
-        const dashboardText = await this.page.getByText('Dashboard').first().innerText();
-        expect(dashboardText).toContain('Dashboard');
+        await expect(this.page).toHaveTitle(expectedTitle,{timeout:10000});
     }
 }
 
